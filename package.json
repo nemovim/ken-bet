@@ -7,6 +7,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "helmet": "^6.0.0",
     "mongoose": "^6.6.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0"
