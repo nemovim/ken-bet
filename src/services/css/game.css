@@ -1,0 +1,219 @@
+article[id^=game-] {
+    padding-top: 0;
+}
+
+article[id^=game-]:hover {
+    cursor: default;
+}
+
+article[id^=game-] > * {
+    border-radius: 0.5rem;
+    margin: 0;
+    margin-top: 1rem;
+    width: -webkit-fill-available;
+}
+
+.gameState > p {
+    padding: 0.2rem 0.5rem;
+    color: white;
+    text-align: center;
+    font-size: .8rem;
+    width: fit-content !important;
+    margin: 0 1rem;
+}
+
+.stateP-wait {
+    background-color: var(--color-primary-blue);
+}
+
+.stateP-open {
+    background-color: var(--color-primary-green);
+}
+.stateP-close {
+    background-color: var(--color-primary-red);
+}
+.stateP-end {
+    background-color: var(--color-primary-purple);
+}
+
+.gameState > p:not(.nowState) {
+    cursor: pointer;
+}
+
+.gameHeader {
+    padding: 1rem;
+}
+
+.gameHeader > h1 {
+    margin: 0;
+}
+
+.gameHeader > p {
+    margin: 0;
+    margin-top: .5rem;
+}
+
+div[id^=choice-] {
+    padding: 1rem;
+}
+
+div[id^=choice-] > p {
+    margin: 0;
+    text-align: center;
+}
+
+div[id^=choice-] > p:first-child {
+    width: 25%;
+}
+
+div[id^=choice-] > progress {
+    width: 45%;
+    height: 1.2rem;
+    appearance: none;
+}
+
+div[id^=choice-] > progress::-webkit-progress-bar {
+    border-radius: .5rem;
+    background-color: white;
+    box-shadow: inset 0rem 0.2rem .4rem .2rem rgb(230 230 230);
+}
+
+div[id^=choice-] > progress::-webkit-progress-value {
+    border-radius: .5rem;
+}
+
+div[id^=choice-] > p:nth-child(3) {
+    width: 10%;
+}
+
+div[id^=choice-] > p:nth-child(4) {
+    width: 10%;
+}
+
+div[id^=choice-] > p:last-child {
+    width: 10%;
+}
+
+div[id^=result-] {
+    justify-content: space-around;
+    padding: .8rem;
+    font-weight: bold;
+}
+
+div[id^=result-] > * {
+    margin: 0;
+}
+
+button[id^=betBtn-] {
+    border-radius: .3rem;
+    font-size: 1rem;
+    font-family: 'Pretendard-Regular';
+    color: white;
+    padding: .3rem .6rem;
+    border: none;
+}
+
+/* ----------------------------------------------------------------------- */
+
+#addGameArticle > * {
+    width: -webkit-fill-available;
+}
+
+#addGameArticle > p {
+    margin: .3rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+#addGameArticle > input {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+    font-family: 'Pretendard-Regular';
+    border-radius: 0.4rem;
+    border: none;
+    background-color: rgb(240, 240, 240);
+}
+
+#addGameArticle > div {
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+#addGameArticle button {
+    color: white;
+    font-size: 1rem;
+    padding: 0.3rem 1.5rem;
+    font-family: 'Pretendard-Regular';
+    border-radius: 0.4rem;
+    border: none;
+}
+
+/* ----------------------------------------------------- */
+
+.state-wait > div:not(:first-child) {
+    background-color: var(--color-light-blue);
+}
+
+/* .state-wait button[id^=betBtn-], */
+.state-wait progress::-webkit-progress-value {
+    background-color: var(--color-primary-blue);
+}
+
+/* .state-wait button[id^=betBtn-]:hover {
+    background-color: var(--color-dark-blue);
+} */
+
+.state-open > div:not(:first-child) {
+    background-color: var(--color-light-green);
+}
+
+.state-open button[id^=betBtn-],
+.state-open progress::-webkit-progress-value {
+    background-color: var(--color-primary-green);
+}
+
+.state-open button[id^=betBtn-]:hover {
+    background-color: var(--color-dark-green);
+}
+
+.state-close > div:not(:first-child) {
+    background-color: var(--color-light-red);
+}
+
+/* .state-close button[id^=betBtn-], */
+.state-close progress::-webkit-progress-value {
+    background-color: var(--color-primary-red);
+}
+
+/* .state-close button[id^=betBtn-]:hover {
+    background-color: var(--color-dark-red);
+} */
+
+.state-end > div:not(:first-child) {
+    background-color: var(--color-light-purple);
+}
+
+/* .state-end button[id^=betBtn-], */
+.state-end progress::-webkit-progress-value {
+    background-color: var(--color-primary-purple);
+}
+
+/* .state-end button[id^=betBtn-]:hover {
+    background-color: var(--color-dark-purple);
+} */
+
+.resultChoice {
+    background-color: var(--color-middle-purple) !important;
+}
+
+#addGameBtn {
+    font-family: 'Pretendard-Regular';
+    border: none;
+    width: -webkit-fill-available;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#addGameBtn:hover {
+    background-color: rgb(240, 240, 240);
+}

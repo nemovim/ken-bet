@@ -1,0 +1,33 @@
+nav {
+    position: sticky;
+    top: 3vh;
+}
+
+nav > div {
+    justify-content: space-between !important;
+}
+
+nav h1 {
+    font-size: 1.2rem;
+}
+
+nav h1, nav p {
+    margin: 0;
+}
+
+#loginBtn {
+    border: black solid .09rem;
+    font-family: 'Pretendard-Regular';
+    font-size: 1rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 0.3rem;
+    background-color: rgb(240, 240, 240);
+}
+
+#loginBtn:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+#loginNav p {
+    margin-left: 1rem;
+}

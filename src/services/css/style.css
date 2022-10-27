@@ -1,0 +1,119 @@
+:root {
+    --color-primary-red: rgb(255, 120, 120);
+    --color-light-red: rgb(255, 235, 235);
+    --color-dark-red: rgb(235, 100, 100);
+    --color-primary-green: rgb(100, 230, 100);
+    --color-light-green: rgb(235, 255, 235);
+    --color-dark-green: rgb(80, 210, 80);
+    --color-primary-blue: rgb(120, 150, 255);
+    --color-light-blue: rgb(240, 250, 255);
+    --color-dark-blue: rgb(100, 130, 255);
+    --color-primary-purple: rgb(200, 150, 255);
+    --color-light-purple: rgb(255, 240, 255);
+    --color-middle-purple: rgb(240, 210, 255);
+    --color-dark-purple: rgb(150, 100, 255);
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    font-size: 25px;
+    font-family: 'Pretendard-Regular';
+}
+
+@media (max-width: 900px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+body {
+    margin: 0;
+    background-color: rgb(245, 245, 245);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.card {
+    box-shadow: 0 0.2rem 0.5rem 0.1rem rgb(200 200 200);
+    margin: 2rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+.primary-red {
+    background-color: var(--color-primary-red);
+}
+
+.primary-green {
+    background-color: var(--color-primary-green);
+}
+
+.primary-blue {
+    background-color: var(--color-primary-blue);
+}
+
+.primary-purple {
+    background-color: var(--color-primary-purple);
+}
+
+.light-red {
+    background-color: var(--color-light-red);
+}
+
+.light-green {
+    background-color: var(--color-light-green);
+}
+
+.light-blue {
+    background-color: var(--color-light-blue);
+}
+
+.light-purple {
+    background-color: var(--color-light-purple);
+}
+
+button.primary-red:hover {
+    background-color: var(--color-dark-red);
+}
+
+button.primary-green:hover {
+    background-color: var(--color-dark-green);
+}
+button.primary-blue:hover {
+    background-color: var(--color-dark-blue);
+}
+button.primary-purple:hover {
+    background-color: var(--color-dark-purple);
+}
