@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
     coin: {
-        bet: { type: Number, default: 500, required: true },
+        bet: { type: Number, default: 0, required: true },
     },
     level: {type: Number, default: 0},
 });

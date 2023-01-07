@@ -5,6 +5,9 @@ import betScript from './bet.js';
 (async function () {
     const userData = await userScript.getUserInfo();
 
+
+    await fetch('http://kentech.tk/coin/sum');
+
     if (userData !== null) {
         userScript.watchChange();
         gameScript.getGameList(userData.level);
