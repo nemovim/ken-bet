@@ -5,4 +5,6 @@ const router = express.Router()
 
 router.get('/', userController.getInfo);
 
+router.post('/give', userController.giveCoin)
+
 export default router;

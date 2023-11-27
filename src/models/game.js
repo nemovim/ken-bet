@@ -14,7 +14,7 @@ const gameSchema = new mongoose.Schema(
         ],
         pot: { type: Number, default: 0 },
         bettor: { type: Number, default: 0 },
-        result: { type: Number }
+        result: { type: [Number] }
     },
     {
         timestamps: true,

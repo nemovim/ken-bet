@@ -104,14 +104,14 @@ const betFuncList = {
         // document.getElementById(`game-${gameData._id}`).after(betDiv);
     },
     doBetting: async (betData) => {
-        const data = await fetch('http://kentech.tk/user');
+        const data = await fetch('/user');
         const userData = await data.json();
 
         betData.userId = userData._id;
 
-        if (userData.coin['bet'] >= betData.bet) {
+        if (userData.coin >= betData.bet) {
             try {
-                await fetch('http://kentech.tk/bet', {
+                await fetch('/bet', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json',

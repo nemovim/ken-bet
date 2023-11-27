@@ -8,7 +8,7 @@ export default {
 
         const userData = await User.findById(betData.userId);
 
-        userData.coin['bet'] -= betData.bet;
+        userData.coin -= betData.bet;
 
         await userData.save();
 

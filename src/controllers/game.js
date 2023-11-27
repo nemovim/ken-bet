@@ -58,17 +58,22 @@ const gameFuncList = {
         const gameData = await Game.findById(data.gameId);
         gameData.state = 'end';
         gameData.result = data.result;
-        await gameData.save();
 
-        const dividend = gameData.pot / gameData.choiceList[data.result].pot;
+        let wonPot = data.result.reduce((prev, wonChoice) => {
+            return prev + gameData.choiceList[wonChoice].pot;
+        }, 0)
+
+        const dividend = gameData.pot / wonPot;
 
         const betDataList = await Bet.find({
-            $and: [{ gameId: data.gameId }, { choice: data.result }],
+            $and: [{ gameId: data.gameId }, { choice: { $in: data.result }}],
         });
 
         for(let betData of betDataList) {
             await gameFuncList.changeUser(betData, dividend);
         }
+
+        await gameData.save();
 
         res.end();
     },
@@ -77,7 +82,7 @@ const gameFuncList = {
             console.log(betData);
             const userData = await User.findById(betData.userId);
             console.log(userData.coin);
-            userData.coin['bet'] += Math.floor(dividend * betData.bet);
+            userData.coin += Math.floor(dividend * betData.bet);
             console.log(userData.coin);
             await userData.save();
             resolve();

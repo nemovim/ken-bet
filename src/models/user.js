@@ -5,9 +5,7 @@ const userSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
-    coin: {
-        bet: { type: Number, default: 0, required: true },
-    },
+    coin: { type: Number, default: 1000, required: true },
     level: {type: Number, default: 0},
 });
 

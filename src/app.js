@@ -17,7 +17,7 @@ import coinRouter from './routes/coin.js';
 import passportIndex from './passport/index.js';
 passportIndex();
 
-const { PORT, MONGO_URI } = process.env;
+const { PORT, MONGO_URI, SESSION_SECRET } = process.env;
 
 console.log(PORT, MONGO_URI);
 
@@ -27,7 +27,7 @@ app.use(express.json());
 // app.use(helmet());
 app.use(
     session({
-        secret: 'abracadabra',
+        secret: SESSION_SECRET,
         resave: true,
         saveUninitialized: false,
     })

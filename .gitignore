@@ -1,3 +1,4 @@
 /node_modules/
 /src/config/
+/legacy_data
 .env

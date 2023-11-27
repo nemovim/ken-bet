@@ -6,7 +6,7 @@ const userFuncList = {
     },
     getUserInfo: async () => {
         try {
-            const res = await fetch('http://kentech.tk/user');
+            const res = await fetch('/user');
             const data = await res.json();
             userFuncList.changeDOM(data);
             return data;
@@ -35,7 +35,7 @@ const userFuncList = {
             document.getElementById('loginNav').classList.remove('hidden');
             document.getElementById(
                 'betP'
-            ).innerText = `Coin: ${userData.coin.bet}`;
+            ).innerText = `Coin: ${userData.coin}`;
             document.getElementById('idP').innerText = `ID: ${userData.id}`;
         }
     },

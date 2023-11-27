@@ -206,7 +206,7 @@ button[id^=betBtn-] {
     background-color: var(--color-middle-purple) !important;
 }
 
-#addGameBtn {
+.masterBtn {
     font-family: 'Pretendard-Regular';
     border: none;
     width: -webkit-fill-available;
@@ -214,6 +214,6 @@ button[id^=betBtn-] {
     font-weight: bold;
 }
 
-#addGameBtn:hover {
+.masterBtn:hover {
     background-color: rgb(240, 240, 240);
 }

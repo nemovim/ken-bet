@@ -6,13 +6,14 @@ import betScript from './bet.js';
     const userData = await userScript.getUserInfo();
 
 
-    await fetch('http://kentech.tk/coin/sum');
+    await fetch('/coin/sum');
 
     if (userData !== null) {
         userScript.watchChange();
         gameScript.getGameList(userData.level);
         gameScript.watchChange(userData.level);
         if (userData.level === 9) {
+            gameScript.createGiveCoinBtn();
             gameScript.createAddGameBtn();
         }
     } else {

@@ -4,11 +4,13 @@ const gameFuncList = {
     watchChange: (userLevel) => {
         setInterval(async () => {
             try {
-                const res = await fetch('http://kentech.tk/game/watch');
+                const res = await fetch('/game/watch');
                 const data = await res.json();
 
                 data.forEach((gameData) => {
-                    const gameArticle = document.querySelector(`#game-${gameData._id}`);
+                    const gameArticle = document.querySelector(
+                        `#game-${gameData._id}`
+                    );
                     if (gameArticle !== null) {
                         gameArticle.remove();
                     }
@@ -21,7 +23,7 @@ const gameFuncList = {
     },
     getGameList: async (userLevel) => {
         try {
-            const res = await fetch('http://kentech.tk/game/list');
+            const res = await fetch('/game/list');
             const data = await res.json();
             document.getElementById('gameSection').innerHTML = '';
             gameFuncList.changeDOM(data, userLevel);
@@ -39,7 +41,6 @@ const gameFuncList = {
         if (userLevel !== -1) {
             betScript.changeDOM(gameList);
         }
-
     },
     createGameArticle: (gameData) => {
         // const {primary, sub} = gameFuncList.getColor(gameData.state);
@@ -65,7 +66,7 @@ const gameFuncList = {
 
         gameArticle.append(gameHeader);
 
-        for (let choice of gameData.choiceList) {
+        gameData.choiceList.forEach((choice, i) => {
             const choiceDiv = document.createElement('div');
             choiceDiv.setAttribute(
                 'id',
@@ -73,7 +74,7 @@ const gameFuncList = {
             );
             choiceDiv.classList.add('container');
 
-            if (gameData.choiceList[gameData.result] === choice) {
+            if (gameData.result.indexOf(i) !== -1) {
                 choiceDiv.classList.add('resultChoice');
             }
 
@@ -109,7 +110,7 @@ const gameFuncList = {
             choiceDiv.append(choiceDividend);
 
             gameArticle.append(choiceDiv);
-        }
+        });
 
         const gameResult = document.createElement('div');
         gameResult.setAttribute('id', `result-${gameData._id}`);
@@ -173,8 +174,7 @@ const gameFuncList = {
         document.getElementById(`game-${gameData._id}`).prepend(gameState);
     },
     changeState: async (gameData, newState, userLevel) => {
-
-        await fetch('http://kentech.tk/game/modify', {
+        await fetch('/game/modify', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -191,12 +191,45 @@ const gameFuncList = {
             gameFuncList.createGameState(gameData, userLevel);
         });
     },
+    createGiveCoinBtn: () => {
+        const giveCoinBtn = document.createElement('button');
+        giveCoinBtn.innerText = '+코인 지급+';
+        giveCoinBtn.setAttribute('id', 'giveCoinBtn');
+        giveCoinBtn.classList.add('card');
+        giveCoinBtn.classList.add('container');
+        giveCoinBtn.classList.add('masterBtn');
+
+        giveCoinBtn.addEventListener('click', () => {
+            gameFuncList.giveCoin();
+        });
+
+        document.getElementById('addSection').append(giveCoinBtn);
+    },
+    giveCoin: () => {
+        const delta = Number(prompt('모두에게 얼마를 지급할까요?'));
+        if (!isNaN(delta)) {
+            fetch('/user/give', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    delta,
+                }),
+            }).then(() => {
+                alert('정상적으로 지급하였습니다.');
+            });
+        } else {
+            alert('지급을 취소합니다.');
+        }
+    },
     createAddGameBtn: () => {
         const addGameBtn = document.createElement('button');
         addGameBtn.innerText = '+게임 추가+';
         addGameBtn.setAttribute('id', 'addGameBtn');
         addGameBtn.classList.add('card');
         addGameBtn.classList.add('container');
+        addGameBtn.classList.add('masterBtn');
 
         addGameBtn.addEventListener('click', () => {
             gameFuncList.createAddGameArticle();
@@ -265,7 +298,7 @@ const gameFuncList = {
         document.getElementById('addSection').append(addGameArticle);
     },
     addGame: (title, content, choice) => {
-        fetch('http://kentech.tk/game/add', {
+        fetch('/game/add', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -279,7 +312,9 @@ const gameFuncList = {
             .then(() => {
                 alert('정상적으로 추가되었습니다.');
                 document.getElementById('addGameArticle').remove();
-                document.getElementById('addGameBtn').classList.remove('hidden');
+                document
+                    .getElementById('addGameBtn')
+                    .classList.remove('hidden');
             })
             .catch(() => {
                 alert('추가 중에 오류가 발생했습니다.');
@@ -287,23 +322,34 @@ const gameFuncList = {
     },
     endGame: (gameData) => {
         let choiceTitleList = [];
-        let msg = '결과의 번호를 입력하세요\n';
+        let msg =
+            '결과의 번호를 입력하세요\n(여러 개일 경우, 쉼표로 구분해서 입력해주세요)\n';
         gameData.choiceList.forEach((choice, index) => {
             choiceTitleList.push(choice.title);
             msg += `${index}. ${choice.title}\n`;
         });
 
-        const answer = parseInt(prompt(msg));
+        const answer = prompt(msg).split(',');
 
-        if (!isNaN(answer) && choiceTitleList.length > answer) {
-            fetch('http://kentech.tk/game/end', {
+        let correctResult = true;
+        const result = answer.map((choice) => {
+            choice = parseInt(choice)
+            if (!isNaN(choice) && choiceTitleList.length > choice) {
+                return choice;
+            } else {
+                correctResult = false;
+            }
+        });
+
+        if (correctResult) {
+            fetch('/game/end', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                 },
                 body: JSON.stringify({
                     gameId: gameData._id,
-                    result: answer,
+                    result,
                 }),
             }).then(() => {
                 alert('정상적으로 처리되었습니다.');
